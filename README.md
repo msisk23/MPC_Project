@@ -6,7 +6,7 @@ Our communication layer will replace Message Passing Interface (MPI), the data t
 
   - Get rid of the MPI layer in Secrecy and establish standing TCP connections
   - Implement asynchronous communication
-  - Run Secrecy with our solution implemented on a Linux Unikernel
+  - Run our Secrecy prototype on a Linux Unikernel (UKL)
   
 ## 2. Users and Personas of the Project
 
@@ -16,4 +16,9 @@ Our communication layer will replace Message Passing Interface (MPI), the data t
 
 ## 5. Acceptance Criteria
 
+Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP connections and implementing functioning asynchronous communication so that the solution can be tested on the MOC. Stretch goals include:
+  - Implementing a Secrecy prototype that performs data transfers and communications as quickly or quicker than MPI.
+  - Run a communication-intensive application using our Secrecy prototype on the UKL
+  - Testing and benchmarking our prototype to compare performance gains against MPI performance
+  
 ## 6. Release Planning
