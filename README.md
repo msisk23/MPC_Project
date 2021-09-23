@@ -23,8 +23,8 @@ This project does not target those who do not need to compute sensitive data fro
 ## 3. Scope and Features of the Project
 
 ## 4. Solution Concept
+![image](https://github.com/msisk23/MPC_Project/blob/ca9bb11c63c2797bce30a572713003b7bdbfc677/Diagram.jpg)
 
-https://github.com/msisk23/MPC_Project/blob/ca9bb11c63c2797bce30a572713003b7bdbfc677/Diagram.jpg
 ## 5. Acceptance Criteria
 
 Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP connections and implementing functioning asynchronous communication so that the solution can be tested on the MOC. Stretch goals include:
