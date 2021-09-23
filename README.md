@@ -14,9 +14,9 @@ Multi-party computation is built off of the relationship between data owners and
 
 Common occurrences of this relationship are:
 
-Patients (data owner) releasing personal health data to a healthcare provider (data learner)
-Educational institutions (data learner) analyzing student GPAs (data owner)
-Government agencies (data learner) analyzing the wages of each gender to determine potential gaps in workers (data owner) pay
+  - Patients (data owner) releasing personal health data to a healthcare provider (data learner)
+  - Educational institutions (data learner) analyzing student GPAs (data owner)
+  - Government agencies (data learner) analyzing the wages of each gender to determine potential gaps in workers (data owner) pay
 
 This project does not target those who do not need to compute sensitive data from multiple parties. 
 
