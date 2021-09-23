@@ -23,15 +23,28 @@ This project does not target those who do not need to compute sensitive data fro
 ## 3. Scope and Features of the Project
 
 ## 4. Solution Concept
-Global Architectural Structure of the Project:
-Crucial project components and definition:
-API: Layer, written in C, to process data transfer between application and web server.
-Party: One of three web services used during the data transfer process. The "hub" where messages are sent or received.
-Main Thread: Current line of communication used between parties. Blocking. 
-Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
+**Global Architectural Structure of the Project**
 
-Design Implications and Discussion:
-![image](https://github.com/msisk23/MPC_Project/blob/ca9bb11c63c2797bce30a572713003b7bdbfc677/Diagram.jpg)
+Crucial project components and definitions:
+  - API: Layer, written in C, to process data transfer between application and web server.
+  - Party: One of three web services used during the data transfer process. The "hub" where messages are sent or received.
+  - Multi Party Communication (MPC): Communication between three cloud services to ensure secure data transmission and evaluation
+  - Main Thread: Current line of communication used between parties. Blocking. 
+  - Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
+![image](https://user-images.githubusercontent.com/61120367/134585517-56c97c02-d4d7-43f2-81db-2ed13e3eed8f.png)
+
+_**Figure 1: Architecture of the MPC. Black components currently in use, blue components to be implemented.**_
+
+Figure 1 demonstrates the current structure of the MPC, and the structure to be implemented. Currently, an API is used to enable communication between parties. During certain points of program execution, parties have to verify information with each other. In the current MPC implementation, parties can only communicate along the Main Thread one message at a time. In order to establish a non-blocking method of asynchronous verification, a Communication Thread (seen in blue) will replace the API. Using TCP communication, input and output buffers will allow for the non-blocking transfer of data. Later, the data will be processed asynchronously to provide verification for each party. 
+
+**Design Implications and Discussion**
+
+Key Design Decisions and Implementations:
+  - API Elimination: The API was first implemented as a temporary solution. In an effort to allow for asynchronous communication between parties, all API dependencies will be removed.
+  - Addition of a Communication Thread: When two parties want to exchange messages, they are blocked. With the addition of a communication thread, a party will be able to pull from a communication thread buffer, instead of the main thread, and eliminate the block. 
+  - Implementation of Buffers: When two parties want to exchange messages, they cannot do so asynchronously. As such, only one message can be processed at a time. With the addition of input and output buffers, parties will be able to send and pull messages without being in sync.
+  - Unikernel Implementation: After verifying functionality of API-free system, MPC will run on top of a Unikernel. The stripped down implementation will further speed up MPC implementation. 
+
 
 ## 5. Acceptance Criteria
 
@@ -41,3 +54,19 @@ Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP c
   - Testing and benchmarking our prototype to compare performance gains against MPI performance
   
 ## 6. Release Planning
+Release #1 (due by Week 5):
+  - Remove dependencies from API
+  - Span three Communcation Threads
+
+Release #2 (due by Week 7):
+  - Implement Communication Thread input/output buffers
+
+Release #3 (due by Week 9):
+  - Establish TCP connections between parties
+
+Release #4 (due by Week 11):
+  - Implementation of features based on performance analysis against API-based implementation
+  - Base Unikernel implementation
+Release #5 (due by Week 13):
+  - Final Unikernel implementation
+  - Implementation of features based on further performance analysis
