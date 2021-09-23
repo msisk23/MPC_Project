@@ -33,7 +33,7 @@ This project does not target those who do not need to compute sensitive data fro
     - Ability to run communication-intensive applications using our MPI alternative on a Linux Unikernel (UKL)
     - Report performance improvements when using UKL (if any)
 
--Unikernel
+- Unikernel
     - Our understanding is that we aren't going to worry about the UKL until after we have a functioning MPI solution, and then Professor Liagouris' team will assist us with implementing our solution on a UKL
 
 ## 4. Solution Concept
