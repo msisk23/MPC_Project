@@ -10,6 +10,16 @@ Our communication layer will replace Message Passing Interface (MPI), the data t
   
 ## 2. Users and Personas of the Project
 
+Multi-party computation is built off of the relationship between data owners and data learners. These titles are designated to anyone who owns sensitive data that needs computation to be applied along with any party who the owner has allowed to learn about the findings of this computation.
+
+Common occurrences of this relationship are:
+
+Patients (data owner) releasing personal health data to a healthcare provider (data learner)
+Educational institutions (data learner) analyzing student GPAs (data owner)
+Government agencies (data learner) analyzing the wages of each gender to determine potential gaps in workers (data owner) pay
+
+This project does not target those who do not need to compute sensitive data from multiple parties. 
+
 ## 3. Scope and Features of the Project
 
 ## 4. Solution Concept
