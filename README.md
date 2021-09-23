@@ -23,6 +23,14 @@ This project does not target those who do not need to compute sensitive data fro
 ## 3. Scope and Features of the Project
 
 ## 4. Solution Concept
+Global Architectural Structure of the Project:
+Crucial project components and definition:
+API: Layer, written in C, to process data transfer between application and web server.
+Party: One of three web services used during the data transfer process. The "hub" where messages are sent or received.
+Main Thread: Current line of communication used between parties. Blocking. 
+Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
+
+Design Implications and Discussion:
 ![image](https://github.com/msisk23/MPC_Project/blob/ca9bb11c63c2797bce30a572713003b7bdbfc677/Diagram.jpg)
 
 ## 5. Acceptance Criteria
