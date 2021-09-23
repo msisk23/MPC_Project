@@ -1,4 +1,4 @@
-## Building a secure communication layer for Multi-Party Comptuing - Project Description
+## Building a secure communication layer for Multi-Party Computing - Project Description
 
 ## 1. Visions and Goals of the Project
 
