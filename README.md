@@ -26,7 +26,10 @@ This project does not target those who do not need to compute sensitive data fro
     - Spawn one process per party without MPI
     - Standing TCP connections between parties
     - Asynchronous Communication
-       - Communication threads and input/output buffers
+       - Implement communication threads
+       - Implement input/output buffers
+       - Establish ability for threads to push/pull data from buffers
+    - Maintain proper function of all other aspects of current Secrecy framework
 
 - Unikernel deployment
     - Benchmarking of MPI alternative
@@ -42,6 +45,7 @@ This project does not target those who do not need to compute sensitive data fro
 Crucial project components and definitions:
   - MPI: Message Passing Interface - commonly used in cloud computing, has very slow speeds.
   - Party: One of three web services used during the data transfer process. The "hub" where messages are sent or received.
+  - Web: Cloud providers that provide machines were secure computations on supplied data are taking place.
   - Multi Party Communication (MPC): Communication between three cloud services to ensure secure data transmission and evaluation
   - Main Thread: Current line of communication used between parties. Blocking. 
   - Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
