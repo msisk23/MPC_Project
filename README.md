@@ -32,10 +32,10 @@ This project does not target those who do not need to compute sensitive data fro
     - Maintain proper function of all other aspects of current Secrecy framework
 
 - TCP
-    - A server used for socket programming that will be implemented in C
+    - A server used for standard socket programming that will be implemented in C
     - It rearranges data packets in the order specified with guarantee that they will be received in the same order sent
     - Does flow control
-    - To set up socket connection, three data network packets to set up the socket connection
+    - To set up standard socket connection, three data network packets to set up the socket connection
     
     ![image](https://github.com/msisk23/MPC_Project/blob/main/TCP%20Flow%20Diagram.png)
     _**Figure 1: Flow Diagram of how a TCP Server operates.**_ 
