@@ -37,8 +37,8 @@ This project does not target those who do not need to compute sensitive data fro
     - Does flow control
     - To set up socket connection, three data network packets to set up the socket connection
     
-    ![image](https://github.com/msisk23/MPC_Project/blob/main/TCP%20Flow%20Diagram.png)
-    _**Figure 1: Flow Diagram of how a TCP Server operates.**_
+![image](https://github.com/msisk23/MPC_Project/blob/main/TCP%20Flow%20Diagram.png)
+_**Figure 1: Flow Diagram of how a TCP Server operates.**_ 
 
 - Unikernel deployment
     - Benchmarking of MPI alternative
