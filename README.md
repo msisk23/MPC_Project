@@ -36,6 +36,9 @@ This project does not target those who do not need to compute sensitive data fro
     - It rearranges data packets in the order specified with guarantee that they will be received in the same order sent
     - Does flow control
     - To set up socket connection, three data network packets to set up the socket connection
+    
+    ![image](https://github.com/msisk23/MPC_Project/blob/main/TCP%20Flow%20Diagram.png)
+    _**Figure 1: Flow Diagram of how a TCP Server operates
 
 - Unikernel deployment
     - Benchmarking of MPI alternative
@@ -56,9 +59,9 @@ Crucial project components and definitions:
   - Main Thread: Current line of communication used between parties. Blocking. 
   - Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
 ![image](https://user-images.githubusercontent.com/61120367/134678604-cf5f5657-4c49-4310-be77-839b6323eb1e.png)
-_**Figure 1: Architecture of the MPC. Black components currently in use, blue components to be implemented.**_
+_**Figure 2: Architecture of the MPC. Black components currently in use, blue components to be implemented.**_
 
-Figure 1 demonstrates the current structure of the MPC, and the structure to be implemented. Currently, MPI is used to enable communication between parties. During certain points of program execution, parties have to verify information with each other. In the current MPC implementation, parties can only communicate along the Main Thread one message at a time. In order to establish a non-blocking method of asynchronous verification, a Communication Thread (seen in blue) will replace MPI. Using TCP communication, input and output buffers will allow for the non-blocking transfer of data. Later, the data will be processed asynchronously to provide verification for each party. 
+Figure 2 demonstrates the current structure of the MPC, and the structure to be implemented. Currently, MPI is used to enable communication between parties. During certain points of program execution, parties have to verify information with each other. In the current MPC implementation, parties can only communicate along the Main Thread one message at a time. In order to establish a non-blocking method of asynchronous verification, a Communication Thread (seen in blue) will replace MPI. Using TCP communication, input and output buffers will allow for the non-blocking transfer of data. Later, the data will be processed asynchronously to provide verification for each party. 
 
 **Design Implications and Discussion**
 
