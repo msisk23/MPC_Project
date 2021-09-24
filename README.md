@@ -31,6 +31,12 @@ This project does not target those who do not need to compute sensitive data fro
        - Establish ability for threads to push/pull data from buffers
     - Maintain proper function of all other aspects of current Secrecy framework
 
+- TCP
+    - A server used for socket programming that will be implemented in C
+    - It rearranges data packets in the order specified with guarantee that they will be received in the same order sent
+    - Does flow control
+    - To set up socket connection, three data network packets to set up the socket connection
+
 - Unikernel deployment
     - Benchmarking of MPI alternative
     - Ability to run communication-intensive applications using our MPI alternative on a Linux Unikernel (UKL)
