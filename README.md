@@ -1,4 +1,4 @@
-## Building a secure communication layer for Multi-Party Computing - Project Description
+## Building a Secure Communication Layer for Multi-Party Computing - Project Description
 
 ## 1. Visions and Goals of the Project
 
@@ -49,8 +49,7 @@ Crucial project components and definitions:
   - Multi Party Communication (MPC): Communication between three cloud services to ensure secure data transmission and evaluation
   - Main Thread: Current line of communication used between parties. Blocking. 
   - Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
-![image](https://user-images.githubusercontent.com/61120367/134585517-56c97c02-d4d7-43f2-81db-2ed13e3eed8f.png)
-
+![image](https://user-images.githubusercontent.com/61120367/134678604-cf5f5657-4c49-4310-be77-839b6323eb1e.png)
 _**Figure 1: Architecture of the MPC. Black components currently in use, blue components to be implemented.**_
 
 Figure 1 demonstrates the current structure of the MPC, and the structure to be implemented. Currently, MPI is used to enable communication between parties. During certain points of program execution, parties have to verify information with each other. In the current MPC implementation, parties can only communicate along the Main Thread one message at a time. In order to establish a non-blocking method of asynchronous verification, a Communication Thread (seen in blue) will replace MPI. Using TCP communication, input and output buffers will allow for the non-blocking transfer of data. Later, the data will be processed asynchronously to provide verification for each party. 
