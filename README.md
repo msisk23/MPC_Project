@@ -37,13 +37,13 @@ This project does not target those who do not need to compute sensitive data fro
     - Report performance improvements when using UKL (if any)
 
 - Unikernel
-    - Our understanding is that we aren't going to worry about the UKL until after we have a functioning MPI solution, and then Professor Liagouris' team will assist us with implementing our solution on a UKL
+    - Our understanding is that we aren't going to worry about the UKL until after we have a functioning MPI solution, and then PhD students from Professor Krieger's group will help us run Secrecy on UKL.
 
 ## 4. Solution Concept
 **Global Architectural Structure of the Project**
 
 Crucial project components and definitions:
-  - MPI: Message Passing Interface - commonly used in cloud computing, has very slow speeds.
+  - MPI: Message Passing Interface - commonly used in cloud computing, has many unnecessary capabilities (unwanted software dependencies) for Secrecy. Is also unable to run on   Unikernel
   - Party: One of three web services used during the data transfer process. The "hub" where messages are sent or received.
   - Web: Cloud providers that provide machines were secure computations on supplied data are taking place.
   - Multi Party Communication (MPC): Communication between three cloud services to ensure secure data transmission and evaluation
@@ -58,7 +58,7 @@ Figure 1 demonstrates the current structure of the MPC, and the structure to be 
 
 Key Design Decisions and Implementations:
   - MPI Elimination: MPI was first deployed as a temporary solution. In an effort to allow for asynchronous communication between parties, all MPI dependencies will be removed.
-  - Addition of a Communication Thread: When two parties want to exchange messages through the main thread, it blocks all the main thread operations or computations. By dedicating parties communication tasks to additional threads, the parties will be able to pull from a communication thread buffer, instead of the main thread, which eliminates the block. 
+  - Addition of a Communication Thread: When two parties want to exchange messages through the main thread, it blocks all the main thread operations or computations. By dedicating parties communication tasks to additional threads, the parties will be able to pull from a communication thread buffer, instead of the main thread, which eliminates the block. In order to implement multithreading, we will be using pthreads allowing our group to maintain high speed communication without the MPI.
   - Implementation of Buffers: When two parties want to exchange messages, they cannot do so asynchronously. As such, only one message can be processed at a time. With the addition of input and output buffers, parties will be able to send and pull messages without being in sync.
   - Unikernel Implementation: After verifying functionality of the MPI-free system, MPC will run on top of a Unikernel. The stripped down implementation will further speed up MPC implementation. 
 
