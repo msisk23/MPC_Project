@@ -59,7 +59,7 @@ Figure 1 demonstrates the current structure of the MPC, and the structure to be 
 
 Key Design Decisions and Implementations:
   - MPI Elimination: MPI was first deployed as a temporary solution. In an effort to allow for asynchronous communication between parties, all MPI dependencies will be removed.
-  - Addition of a Communication Thread: When two parties want to exchange messages, they are blocked. With the addition of a communication thread, a party will be able to pull from a communication thread buffer, instead of the main thread, and eliminate the block. 
+  - Addition of a Communication Thread: When two parties want to exchange messages through the main thread, it blocks all the main thread operations or computations. By dedicating parties communication tasks to additional threads, the parties will be able to pull from a communication thread buffer, instead of the main thread, which eliminates the block. 
   - Implementation of Buffers: When two parties want to exchange messages, they cannot do so asynchronously. As such, only one message can be processed at a time. With the addition of input and output buffers, parties will be able to send and pull messages without being in sync.
   - Unikernel Implementation: After verifying functionality of the MPI-free system, MPC will run on top of a Unikernel. The stripped down implementation will further speed up MPC implementation. 
 
