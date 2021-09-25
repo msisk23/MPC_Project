@@ -96,7 +96,7 @@ Release #4 (due by Week 11):
   - Continued benchmarking
   - Implementation of features based on performance analysis against MPI-based implementation
   - Base Unikernel implementation
-  - 
+
 Release #5 (due by Week 13):
   - Final Unikernel implementation
   - Implementation of features based on further performance analysis
