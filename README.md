@@ -12,7 +12,7 @@ Our communication layer will replace Message Passing Interface (MPI), the data t
 
 In order for outside parties to benefit from MPC, developers will implementing this improved software. They will benefit from a faster communication layer that enables MPC computation of a data owner's sensitive data at an improved rate.
 
-Developers of the MPC software with this faster communication layer will be the main users of this project as it allows for improved implementation of MPC computation.
+Developers of the MPC software with this faster communication layer will be the main users of this project as implementation on a unikernel rather than reliance of MPI communication will allow for faster computation.
 
 This project does not target those outside parties (data owner and data learner) that are inputting and visualizing this sensitive data. They will not be interacting with the communication layer as that will be the task of the developers. They will, however, also benefit from faster computation speeds regarding their sensitive data. 
 
