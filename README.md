@@ -105,7 +105,7 @@ Release #5:
 
   - Interface with Unikernel implementors
   - Complete testing
-  - Streamline code
+  - Fix bugs
 
 ## Mentors
 John Liagouris: liagos@bu.edu
