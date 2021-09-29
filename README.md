@@ -78,25 +78,22 @@ Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP c
   - Testing and benchmarking our prototype to compare performance gains against MPI performance
   
 ## 6. Release Planning
-Release #1 (due by Week 5):
-  - Remove dependencies from MPI
-  - Implement working solution with a single thread per party (TCP connections between parties)
 
-Release #2 (due by Week 7):
-  - Implement Communication Threads for asynchronous communication
-
-Release #3 (due by Week 9):
-  - Implement I/O buffers for asynchronous communications
-  - Begin benchmarking prototype
-
-Release #4 (due by Week 11):
-  - Continued benchmarking
-  - Implementation of features based on performance analysis against MPI-based implementation
-  - Base Unikernel implementation
-
-Release #5 (due by Week 13):
-  - Final Unikernel implementation
-  - Implementation of features based on further performance analysis
+Release #1:
+  - Remove dependencies on MPI from init function
+Release #2:
+  - Remove dependencies on MPI from init function
+  - Establish standing TCP connection between 3 parties
+Release #3:
+  - Finish establishing standing TCP connections
+  - Remove other MPI dependencies
+Release #4:
+  - Finish removing MPI dependencies
+  - Test  to ensure implementation functions without MPI
+Release #5:
+  - Interface with Unikernel implementors
+  - Complete testing
+  - Streamline code
 
 ## Mentors
 John Liagouris: liagos@bu.edu
