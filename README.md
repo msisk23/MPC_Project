@@ -4,7 +4,7 @@
 
 Our communication layer will replace Message Passing Interface (MPI), the data transfer protocol currently being used by Secrecy to perform Multi-Party Computing (MPC). High-level goals for this project include:
 
-  - Get rid of the MPI layer in Secrecy and establish standing TCP connections
+  - Eliminate MPI dependency in Secrecy and establish standing TCP connections
   - Implement asynchronous communication
   - Run our Secrecy prototype on a Linux Unikernel (UKL)
   
@@ -53,6 +53,7 @@ Crucial project components and definitions:
   - Web: Cloud providers that provide machines were secure computations on supplied data are taking place.
   - Multi Party Communication (MPC): Communication between three cloud services to ensure secure data transmission and evaluation
   - Main Thread: Current line of communication used between parties. Blocking. 
+  - Secrecy: Application used to securely analyze private data
   - Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
 ![image](https://user-images.githubusercontent.com/61120367/134678604-cf5f5657-4c49-4310-be77-839b6323eb1e.png)
 _**Figure 2: Architecture of the MPC. Black components currently in use, blue components to be implemented.**_
