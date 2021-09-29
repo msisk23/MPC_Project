@@ -18,7 +18,7 @@ This project does not target those outside parties (data owner and data learner)
 
 ## 3. Scope and Features of the Project
 
-- Remove dependencies from MPI
+- Remove dependencies on MPI
     - Spawn one process per party without MPI
     - Standing TCP connections between the data analysts, data owner, and the secure computation parties
     - Asynchronous Communication
