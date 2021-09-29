@@ -78,19 +78,31 @@ Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP c
   - Testing and benchmarking our prototype to compare performance gains against MPI performance
   
 ## 6. Release Planning
-
 Release #1:
+
   - Remove dependencies on MPI from init function
+
+
 Release #2:
+
   - Remove dependencies on MPI from init function
   - Establish standing TCP connection between 3 parties
+
+
 Release #3:
+
   - Finish establishing standing TCP connections
   - Remove other MPI dependencies
+
+
 Release #4:
+
   - Finish removing MPI dependencies
   - Test  to ensure implementation functions without MPI
+
+
 Release #5:
+
   - Interface with Unikernel implementors
   - Complete testing
   - Streamline code
