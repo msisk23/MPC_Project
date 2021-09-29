@@ -18,7 +18,7 @@ This project does not target those outside parties (data owner and data learner)
 
 - Remove dependencies from MPI
     - Spawn one process per party without MPI
-    - Standing TCP connections between parties
+    - Standing TCP connections between the data analysts, data owner, and the secure computation parties
     - Asynchronous Communication
        - Implement communication threads
        - Implement input/output buffers
