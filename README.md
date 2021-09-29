@@ -10,13 +10,15 @@ Our communication layer will replace Message Passing Interface (MPI), the data t
   
 ## 2. Users and Personas of the Project
 
-Multi-party computation is built off of the relationship between data owners and data learners. In order for each of these outside parties to benefit from MPC, developers who will be implementing this software are our main users. To enable a unikernel implementation, developers need all MPI dependencies removed. In removing the dependencies, a faster MPC can be developed.
+In order for outside parties to benefit from MPC, developers will implementing this improved software. They will benefit from a faster communication layer that enables MPC computation of a data owner's sensitive data at an improved rate.
+
+Developers of the MPC software with this faster communication layer will be the main users of this project as it allows for improved implementation of MPC computation.
 
 This project does not target those outside parties (data owner and data learner) that are inputting and visualizing this sensitive data. They will not be interacting with the communication layer as that will be the task of the developers. They will, however, also benefit from faster computation speeds regarding their sensitive data. 
 
 ## 3. Scope and Features of the Project
 
-- Remove dependencies on MPI
+- Remove dependencies from MPI
     - Spawn one process per party without MPI
     - Standing TCP connections between the data analysts, data owner, and the secure computation parties
     - Asynchronous Communication
@@ -75,23 +77,23 @@ Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP c
   - Testing and benchmarking our prototype to compare performance gains against MPI performance
   
 ## 6. Release Planning
-Release #1:
+Release #1 (due by Week 5):
   - Remove dependencies from MPI
   - Implement working solution with a single thread per party (TCP connections between parties)
 
-Release #2:
+Release #2 (due by Week 7):
   - Implement Communication Threads for asynchronous communication
 
-Release #3:
+Release #3 (due by Week 9):
   - Implement I/O buffers for asynchronous communications
   - Begin benchmarking prototype
 
-Release #4:
+Release #4 (due by Week 11):
   - Continued benchmarking
   - Implementation of features based on performance analysis against MPI-based implementation
   - Base Unikernel implementation
 
-Release #5:
+Release #5 (due by Week 13):
   - Final Unikernel implementation
   - Implementation of features based on further performance analysis
 
