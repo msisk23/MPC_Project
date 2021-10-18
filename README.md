@@ -31,7 +31,7 @@ This project does not target those outside parties (data owner and data learner)
     - Master Orchestrator: spawns processes/waits for parties to contact it to pass IP addresses to other parties
 
 - TCP
-    - Internet communication protocol that uses IP addresses and port number for routing
+    - Network communication protocol that uses IP addresses and port number for routing
     - It rearranges data packets in the order specified with guarantee that they will be received in the same order sent
     - Does flow control
     - Programmed using C sys/socket library
