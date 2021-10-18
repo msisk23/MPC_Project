@@ -1,13 +1,14 @@
-## Building a Secure Communication Layer for Multi-Party Computing - Project Description
+## Building a Secure Communication Layer for Multi-Party Computing - Project Description (UPDATE: 10/18/2021)
 
 ## 1. Visions and Goals of the Project
 
-Our communication layer will replace Message Passing Interface (MPI), the data transfer protocol currently being used by Secrecy to perform Multi-Party Computing (MPC). High-level goals for this project include:
+Our communication layer will replace Message Passing Interface (MPI), the messaging protocol currently used in Secrecy:
 
   - Eliminate MPI dependency in Secrecy and establish standing TCP connections
-  - Implement asynchronous communication
   - Run our Secrecy prototype on a Linux Unikernel (UKL)
-  
+
+MPI is very effective for HPC, which happens on a single cluster. However, since MPC parties are not necessarily located in the same place, an communication protocol that uses the internet (i.e. TCP) is needed. Additionally, Secrecy is meant to eventually be deployed on a Unikernel, which MPI is not compatible with.
+
 ## 2. Users and Personas of the Project
 
 In order for outside parties to benefit from MPC, developers will implementing this improved software. They will benefit from a faster communication layer that enables MPC computation of a data owner's sensitive data at an improved rate.
@@ -19,18 +20,21 @@ This project does not target those outside parties (data owner and data learner)
 ## 3. Scope and Features of the Project
 
 - Remove dependencies on MPI
-    - Spawn one process per party without MPI
-    - Standing TCP connections between the data analysts, data owner, and the secure computation parties
+    - Replace MPI init with a sockets init function
+    - Establish TCP connections between parties involved and orchestration mechanism
     - Asynchronous Communication
-       - Implement communication threads
-       - Implement input/output buffers
-       - Establish ability for threads to push/pull data from buffers
+       - TCP is intrinsically asynchronous
     - Maintain proper function of all other aspects of current Secrecy framework
 
+- Orchestration
+    - Implement way to orchestrate party IP addresses for TCP
+    - Master Orchestrator: spawns processes/waits for parties to contact it to pass IP addresses to other parties
+
 - TCP
-    - A server used for standard socket programming that will be implemented in C
+    - Internet communication protocol that uses IP addresses and port number for routing
     - It rearranges data packets in the order specified with guarantee that they will be received in the same order sent
     - Does flow control
+    - Programmed using C sys/socket library
     - To set up standard socket connection, three data network packets to set up the socket connection
     
     ![image](https://github.com/msisk23/MPC_Project/blob/main/TCP%20Flow%20Diagram.png)
@@ -48,13 +52,12 @@ This project does not target those outside parties (data owner and data learner)
 **Global Architectural Structure of the Project**
 
 Crucial project components and definitions:
-  - MPI: Message Passing Interface - commonly used in cloud computing, has many unnecessary capabilities (unwanted software dependencies) for Secrecy. Is also unable to run on Unikernel
+  - MPI: Message Passing Interface - commonly used in high performance computing, is very effective and efficient on a single cluster. Doesn't necessarily work with MPC due to physical locations of different parties, and is incompatible with UKL
   - Party: One of three web services used during the data transfer process. The "hub" where messages are sent or received.
   - Web: Cloud providers that provide machines were secure computations on supplied data are taking place.
   - Multi Party Communication (MPC): Communication between three cloud services to ensure secure data transmission and evaluation
-  - Main Thread: Current line of communication used between parties. Blocking. 
   - Secrecy: Application used to securely analyze private data
-  - Communication (Comm) Thread: Non-blocking line of communication to be implemented between parties. Using buffers, will allow for asynchronous party communication.
+  - Master Orchestrator: entity that receives IP addresses of parties and passes them to other parties to establish socket connections and open TCP flow
 ![image](https://user-images.githubusercontent.com/61120367/134678604-cf5f5657-4c49-4310-be77-839b6323eb1e.png)
 _**Figure 2: Architecture of the MPC. Black components currently in use, blue components to be implemented.**_
 
@@ -63,17 +66,17 @@ Figure 2 demonstrates the current structure of the MPC, and the structure to be 
 **Design Implications and Discussion**
 
 Key Design Decisions and Implementations:
-  - MPI Elimination: MPI was first deployed as a temporary solution. In an effort to allow for asynchronous communication between parties, remove unnecessary softwared depenencies and run on UKL, MPI needs to be replaced.
-      - This will be done by creating a standing TCP circuit between parties
-  - Addition of a Communication Thread: When two parties want to exchange messages through the main thread, it blocks all the main thread operations or computations. By dedicating parties communication tasks to additional threads, the parties will be able to pull from a communication thread buffer, instead of the main thread, which eliminates the block. In order to implement multithreading, we will be using pthreads allowing our group to maintain high speed communication without the MPI.
-  - Implementation of Buffers: When two parties want to exchange messages, they cannot do so asynchronously. As such, only one message can be processed at a time. With the addition of input and output buffers, parties will be able to send and pull messages without being in sync.
+  - MPI Elimination: MPI was first deployed as a temporary solution. In order to deploy Secrecy for MPC, remove unnecessary software depenencies and run on UKL, MPI needs to be replaced.
+      - This will be done by implementing TCP connections between parties
+  - Addition of a Communication Thread: When two parties want to exchange messages through the main thread, it blocks all the main thread operations or computations. By dedicating parties communication tasks to additional threads, the parties will be able to pull from a communication thread buffer, instead of the main thread, which eliminates the block. In order to implement multithreading, we will be using pthreads allowing our group to maintain high speed communication without the MPI (currently not the focus of the project, will come up later during optimization).
+  - Implementation of Buffers: When two parties want to exchange messages, they cannot do so asynchronously. As such, only one message can be processed at a time. With the addition of input and output buffers, parties will be able to send and pull messages without being in sync (Also part of optimization, for a later sprint).
   - Unikernel Implementation: After verifying functionality of the MPI-free system, MPC will run on top of a Unikernel. The stripped down implementation will further speed up MPC implementation. 
 
 
 ## 5. Acceptance Criteria
 
-Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP connections and implementing functioning asynchronous communication so that the solution can be tested on the MOC. Stretch goals include:
-  - Implementing a Secrecy prototype that performs data transfers and communications as quickly or quicker than MPI.
+Minimum acceptance is defined as replacing MPI in Secrecy with functioning TCP connections and implementing a party orchestrator so that our solution can be tested on the MOC. Stretch goals include:
+  - Implementing communication thread with input/outpur buffers for each party using pthreads (optimization)
   - Run a communication-intensive application using our Secrecy prototype on the UKL
   - Testing and benchmarking our prototype to compare performance gains against MPI performance
   
@@ -91,25 +94,29 @@ Release #2:
 
 Release #3:
 
-  - Finish establishing standing TCP connections
+  - Implement Master Orchestrator for socket connections in Secrecy
+  - Implement TCP send/receive for data communication between parties
   - Remove other MPI dependencies
 
 
 Release #4:
 
-  - Finish removing MPI dependencies
   - Test  to ensure implementation functions without MPI
+  - Begin deployment on UKL
+  - Test on UKL
 
 
 Release #5:
 
-  - Interface with Unikernel implementors
-  - Complete testing
-  - Fix bugs
+  - Optimize using pthreads (communication thread & buffers)
+  - Final testing
+  - Deployment of solution and optimization on UKL
 
 ## DEMO 1
 
 https://youtu.be/9HV23bVlr6E
+
+## DEMO 2
 
 ## Mentors
 John Liagouris: liagos@bu.edu
